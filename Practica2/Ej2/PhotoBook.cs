@@ -8,9 +8,9 @@
         {
             NumPages = numpages;
         }
-        public PhotoBook() 
+        public PhotoBook() : this(16)
         {
-            NumPages = 16;
+            
         }
 
         public int GetNumberPages() 
