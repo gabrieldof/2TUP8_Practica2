@@ -7,24 +7,32 @@ namespace Practica2.Controllers
     [ApiController]
     public class Ej2Controller : ControllerBase
     {
+
+        // Lista estática para almacenar los álbumes
+        private static List<PhotoBook> albumes = new List<PhotoBook>();
+        
         [HttpPost]
-        public IActionResult CrearAlbumFotosEstandar([FromBody] int numpages)
+        public IActionResult CrearAlbumFotosEstandar([FromBody] int? numPages)
         {
 
-
-            if (numpages != 0)
+            PhotoBook photoBook;
+            if (numPages.HasValue && numPages != 0)
             {
-                PhotoBook photoBook = new PhotoBook(numpages);
-                return Ok($"Se creó album estándar con {photoBook.GetNumberPages()} páginas");
+
+                photoBook = new PhotoBook(numPages.Value);
 
             }
             else
             {
-                PhotoBook photoBook = new PhotoBook();
-                return Ok($"Se creó album estándar con {photoBook.GetNumberPages()} páginas");
+                photoBook = new PhotoBook();
+                
             }
-            
-            
+
+            albumes.Add(photoBook);
+
+            return Ok($"Se creó album estándar con {photoBook.GetNumberPages()} páginas");
+
+
         }
 
 
