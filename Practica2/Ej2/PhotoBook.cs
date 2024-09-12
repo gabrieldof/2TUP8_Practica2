@@ -2,11 +2,16 @@
 {
     public class PhotoBook
     {
+        
+        public int Id { get; }
         protected int NumPages { get; set; }
+
+        static int cont = 0;
 
         public PhotoBook(int numpages) 
         {
             NumPages = numpages;
+            Id = GetId();
         }
         public PhotoBook() : this(16)
         {
@@ -17,6 +22,11 @@
         { 
             return NumPages; 
         
+        }
+
+        static int GetId()
+        {
+            return ++cont;
         }
 
     }
